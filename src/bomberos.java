@@ -1,16 +1,7 @@
-public class bomberos implements respuestaEmergencia {
+public class bomberos extends respuestaEmergencia {
 
-    @Override
-    public void atenderEmergencia() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'atenderEmergencia'");
+    public bomberos(String ubicacion, int nivelGravedad, int tiempoRespuesta) {
+        super(ubicacion, nivelGravedad, tiempoRespuesta);
     }
-
-    @Override
-    public void evaluarEstado() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'evaluarEstado'");
-    }
-
 
 }

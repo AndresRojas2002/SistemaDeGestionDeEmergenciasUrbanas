@@ -1,15 +1,7 @@
-public class policia implements respuestaEmergencia {
+public class policia extends respuestaEmergencia {
 
-    @Override
-    public void atenderEmergencia() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'atenderEmergencia'");
-    }
-
-    @Override
-    public void evaluarEstado() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'evaluarEstado'");
+    public policia(String ubicacion, int nivelGravedad, int tiempoRespuesta) {
+        super(ubicacion, nivelGravedad, tiempoRespuesta);
     }
 
 }

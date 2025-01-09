@@ -1,14 +1,12 @@
 public class robo extends emergencia {
     private String descripcion;
 
-
-     public robo(String tipo, String ubicacion, int nivelGravedad, int tiempoRespuesta, String descripcion) {
-        super("robo", ubicacion, nivelGravedad, tiempoRespuesta);
+    public robo(String tipo, String ubicacion, int nivelGravedad, int tiempoRespuesta, String descripcion) {
+        super("Robo", ubicacion, nivelGravedad, tiempoRespuesta);
         this.descripcion = descripcion;
     }
 
-   
-        public String getDescripcion() {
+    public String getDescripcion() {
         return descripcion;
     }
 
@@ -16,8 +14,10 @@ public class robo extends emergencia {
         this.descripcion = descripcion;
     }
 
-    public void atenderRobo() {
-        System.out.println("Policía atendiendo el robo: " + descripcion);
+    @Override
+    public void atenderEmergencia() {
+        // TODO Auto-generated method stub
+
     }
 
 }

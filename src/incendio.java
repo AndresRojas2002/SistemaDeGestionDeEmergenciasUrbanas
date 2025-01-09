@@ -2,7 +2,7 @@ public class incendio extends emergencia {
     private int areaAfectada;
 
     public incendio(String tipo, String ubicacion, int nivelGravedad, int tiempoRespuesta, int areaAfectada) {
-        super(tipo, ubicacion, nivelGravedad, tiempoRespuesta);
+        super("Incendio", ubicacion, nivelGravedad, tiempoRespuesta);
         this.areaAfectada = areaAfectada;
     }
 
@@ -14,7 +14,9 @@ public class incendio extends emergencia {
         this.areaAfectada = areaAfectada;
     }
 
-    
-
+    @Override
+    public void atenderEmergencia() {
+        // TODO Auto-generated method stub
+    }
 
 }

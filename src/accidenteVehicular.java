@@ -3,10 +3,8 @@ public class accidenteVehicular extends emergencia {
 
     public accidenteVehicular(String tipo, String ubicacion, int nivelGravedad, int tiempoRespuesta,
             int numeroDeVehiculos) {
-        super(tipo, ubicacion, nivelGravedad, tiempoRespuesta);
+        super("Accidente Vehicular", ubicacion, nivelGravedad, tiempoRespuesta);
         this.numeroDeVehiculos = numeroDeVehiculos;
-
-        
     }
 
     public int getNumeroDeVehiculos() {
@@ -17,5 +15,10 @@ public class accidenteVehicular extends emergencia {
         this.numeroDeVehiculos = numeroDeVehiculos;
     }
 
-    
+    @Override
+    public void atenderEmergencia() {
+        // TODO Auto-generated method stub
+
+    }
+
 }

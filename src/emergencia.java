@@ -1,58 +1,17 @@
-public class emergencia {
+public abstract class emergencia extends respuestaEmergencia {
 
     String tipo;
-    String ubicacion;
-    int nivelGravedad;
-    int tiempoRespuesta;
-
-    
-
-
-    public emergencia() {
-    }
-
-
-
 
     public emergencia(String tipo, String ubicacion, int nivelGravedad, int tiempoRespuesta) {
+        super(ubicacion, nivelGravedad, tiempoRespuesta);
         this.tipo = tipo;
-        this.ubicacion = ubicacion;
-        this.nivelGravedad = nivelGravedad;
-        this.tiempoRespuesta = tiempoRespuesta;
+
     }
 
+    public abstract void atenderEmergencia();
 
-
-
-    public String getTipo() {
-        return tipo;
+    public void evaluarEstado() {
+        System.out.println("evaluando estado de la emergencia en la ubicacion" + ubicacion);
     }
-
-
-
-
-    public String getUbicacion() {
-        return ubicacion;
-    }
-
-
-
-
-    public int getNivelGravedad() {
-        return nivelGravedad;
-    }
-
-
-
-
-    public int getTiempoRespuesta() {
-        return tiempoRespuesta;
-    }
-
-       
-
-    
-
-
 
 }
