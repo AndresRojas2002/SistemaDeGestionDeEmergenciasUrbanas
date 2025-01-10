@@ -1,7 +1,12 @@
-public class bomberos extends respuestaEmergencia {
+public class Bomberos extends RespuestaEmergencia {
 
-    public bomberos(String ubicacion, int nivelGravedad, int tiempoRespuesta) {
+    public Bomberos(String ubicacion, int nivelGravedad, int tiempoRespuesta) {
         super(ubicacion, nivelGravedad, tiempoRespuesta);
+    }
+
+    @Override
+    public void atenderEmergencia() {
+        System.out.println("policia atendiendo emergencia en la ubicacion " + ubicacion);
     }
 
 }

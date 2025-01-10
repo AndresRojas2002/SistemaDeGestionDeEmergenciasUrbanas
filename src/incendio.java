@@ -1,22 +1,20 @@
-public class incendio extends emergencia {
-    private int areaAfectada;
+public class Incendio extends Emergencia {
+    
 
-    public incendio(String tipo, String ubicacion, int nivelGravedad, int tiempoRespuesta, int areaAfectada) {
-        super("Incendio", ubicacion, nivelGravedad, tiempoRespuesta);
-        this.areaAfectada = areaAfectada;
-    }
-
-    public int getAreaAfectada() {
-        return areaAfectada;
-    }
-
-    public void setAreaAfectada(int areaAfectada) {
-        this.areaAfectada = areaAfectada;
+    public Incendio(String ubicacion, int nivelGravedad, int tiempoRespuesta) {
+        super(TipoEmergencia.INCENDIO, ubicacion, nivelGravedad, tiempoRespuesta);
+        
     }
 
     @Override
     public void atenderEmergencia() {
-        // TODO Auto-generated method stub
+        System.out.println("Atendiendo Incendio");
+       
     }
+    
+
+    
+
+   
 
 }
