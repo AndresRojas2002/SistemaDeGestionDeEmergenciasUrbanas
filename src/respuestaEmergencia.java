@@ -9,6 +9,6 @@ public abstract class RespuestaEmergencia {
         this.tiempoRespuesta = tiempoRespuesta;
     }
 
-   
+    public abstract void atenderEmergencia();
 
 }

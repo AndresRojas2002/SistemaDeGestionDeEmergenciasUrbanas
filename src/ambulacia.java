@@ -4,4 +4,9 @@ public class Ambulacia extends RespuestaEmergencia {
         super(ubicacion, nivelGravedad, tiempoRespuesta);
     }
 
+    @Override
+    public void atenderEmergencia() {
+        System.out.println("Ambulancia atendiendo emergencia en la ubicacion " + ubicacion);
+    }
+
 }

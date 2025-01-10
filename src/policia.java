@@ -4,4 +4,9 @@ public class Policia extends RespuestaEmergencia {
         super(ubicacion, nivelGravedad, tiempoRespuesta);
     }
 
+    @Override
+    public void atenderEmergencia() {
+        System.out.println("policia atendiendo emergencia en la ubicacion  " + ubicacion);
+    }
+
 }

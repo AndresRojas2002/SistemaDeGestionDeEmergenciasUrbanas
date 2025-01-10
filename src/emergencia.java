@@ -8,7 +8,7 @@ public abstract class Emergencia extends RespuestaEmergencia {
 
     }
 
-    public abstract void atenderEmergencia();
+   
 
     public void evaluarEstado() {
         System.out.println("evaluando estado de la emergencia en la ubicacion" + ubicacion);

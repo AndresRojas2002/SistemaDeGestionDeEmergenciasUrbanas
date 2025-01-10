@@ -7,7 +7,7 @@ public class Robo extends Emergencia {
 
     @Override
     public void atenderEmergencia() {
-        // TODO Auto-generated method stub
+        System.out.println("Atendiendo Robo");
 
     }
 

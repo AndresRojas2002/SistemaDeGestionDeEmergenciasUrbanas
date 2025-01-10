@@ -6,11 +6,15 @@ public class Incendio extends Emergencia {
         
     }
 
-    
-
     @Override
     public void atenderEmergencia() {
-        // TODO Auto-generated method stub
+        System.out.println("Atendiendo Incendio");
+       
     }
+    
+
+    
+
+   
 
 }
