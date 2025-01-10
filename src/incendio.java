@@ -1,8 +1,8 @@
 public class Incendio extends Emergencia {
     
 
-    public Incendio(String tipo, String ubicacion, int nivelGravedad, int tiempoRespuesta) {
-        super("Incendio", ubicacion, nivelGravedad, tiempoRespuesta);
+    public Incendio(String ubicacion, int nivelGravedad, int tiempoRespuesta) {
+        super(TipoEmergencia.INCENDIO, ubicacion, nivelGravedad, tiempoRespuesta);
         
     }
 
