@@ -1,8 +1,8 @@
-public abstract class emergencia extends respuestaEmergencia {
+public abstract class Emergencia extends RespuestaEmergencia {
 
     String tipo;
 
-    public emergencia(String tipo, String ubicacion, int nivelGravedad, int tiempoRespuesta) {
+    public Emergencia(String tipo, String ubicacion, int nivelGravedad, int tiempoRespuesta) {
         super(ubicacion, nivelGravedad, tiempoRespuesta);
         this.tipo = tipo;
 

@@ -1,9 +1,9 @@
-public abstract class respuestaEmergencia {
+public abstract class RespuestaEmergencia {
     String ubicacion;
     int nivelGravedad;
     int tiempoRespuesta;
 
-    public respuestaEmergencia(String ubicacion, int nivelGravedad, int tiempoRespuesta) {
+    public RespuestaEmergencia(String ubicacion, int nivelGravedad, int tiempoRespuesta) {
         this.ubicacion = ubicacion;
         this.nivelGravedad = nivelGravedad;
         this.tiempoRespuesta = tiempoRespuesta;

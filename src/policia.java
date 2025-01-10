@@ -1,6 +1,6 @@
-public class policia extends respuestaEmergencia {
+public class Policia extends RespuestaEmergencia {
 
-    public policia(String ubicacion, int nivelGravedad, int tiempoRespuesta) {
+    public Policia(String ubicacion, int nivelGravedad, int tiempoRespuesta) {
         super(ubicacion, nivelGravedad, tiempoRespuesta);
     }
 
