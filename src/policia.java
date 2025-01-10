@@ -7,6 +7,7 @@ public class Policia extends RespuestaEmergencia {
     @Override
     public void atenderEmergencia() {
         System.out.println("policia atendiendo emergencia en la ubicacion  " + ubicacion);
+        
     }
 
 }
