@@ -17,14 +17,17 @@ public class Menu {
             System.out.println("5. Salir");
 
             opcion = sc.nextInt();
+            sc.nextLine();
 
             switch (opcion) {
                 case 1:
-                    // TODO registrar emergencia
-
-                    break;
+                    
+break;
                 case 2:
                     // TODO recursos disponibles
+
+                    
+
                     break;
 
                 case 3:
@@ -51,3 +54,4 @@ public class Menu {
     }
 
 }
+
