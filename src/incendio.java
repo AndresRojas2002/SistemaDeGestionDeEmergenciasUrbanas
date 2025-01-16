@@ -1,4 +1,6 @@
 public class Incendio extends Emergencia {
+
+    
     
 
     public Incendio(String ubicacion, int nivelGravedad, int tiempoRespuesta) {

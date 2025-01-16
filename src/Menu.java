@@ -8,25 +8,24 @@ public class Menu {
 
         do {
 
-            System.out.println("BIEMBENIDOS AL SERVICIO DE EMERGENCIAS ");
+            System.out.println("\nBIEMBENIDOS AL SERVICIO DE EMERGENCIAS ");
             System.out.println("-------------------------------------");
             System.out.println("1. Registrar emergencia ");
             System.out.println("2. Recursos disponibles");
             System.out.println("3. Atender emergencia");
             System.out.println("4. Mostrar estadisticas");
-            System.out.println("5. Salir");
+            System.out.println("5. Salir\n");
+            System.out.print("selecciona una opcion: ");
 
             opcion = sc.nextInt();
             sc.nextLine();
 
             switch (opcion) {
                 case 1:
-                    
-break;
+                    RegistrarEmergencia registrarEmergencia = new RegistrarEmergencia();
+                    registrarEmergencia.registrar();
+                    break;
                 case 2:
-                    // TODO recursos disponibles
-
-                    
 
                     break;
 
@@ -54,4 +53,3 @@ break;
     }
 
 }
-
