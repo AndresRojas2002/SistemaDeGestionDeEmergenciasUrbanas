@@ -1,5 +1,7 @@
 import java.util.Random;
 
+import utils.TipoRecursos;
+
 public class Recursos {
 
     private int cantidadPolicias;
