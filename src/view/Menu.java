@@ -1,25 +1,22 @@
 package view;
 
 import java.util.Scanner;
-
 import controller.SistemaEmergencia;
-import model.services.Ambulancia;
-import model.services.Bomberos;
-import model.services.Policia;
+
 
 public class Menu {
 
     public void mostraMenu() {
 
         SistemaEmergencia sistema = SistemaEmergencia.getInstancia();
-
-        inicializarRecursosDemo(sistema);
-       
+        
+        // Inicializar recursos automáticamente desde la clase Recursos
+        Recursos recursos = new Recursos(); 
+        
         Scanner sc = new Scanner(System.in);
         RegistrarEmergencia registrarEmergencia = new RegistrarEmergencia();
         DatosEmergencia datosEmergencia = new DatosEmergencia(registrarEmergencia);
         AtenderEmergencia atenderEmergencia = new AtenderEmergencia();
-         
 
         int opcion;
 
@@ -41,12 +38,10 @@ public class Menu {
 
             switch (opcion) {
                 case 1:
-
                     registrarEmergencia.registrar(sistema, sc);
                     break;
 
                 case 2:
-
                     datosEmergencia.mostrarDatosEmergencia();
                     break;
 
@@ -55,32 +50,22 @@ public class Menu {
                     break;
 
                 case 4:
-                atenderEmergencia.atenderEmergenciaMenu(sistema, sc);
+                    atenderEmergencia.atenderEmergenciaMenu(sistema, sc);
                     break;
 
-                case 5: 
-                sistema.mostrarEstadisticas();
+                case 5:
+                    sistema.mostrarEstadisticas();
                     break;
 
                 case 6:
-
-                System.out.println("\u001B[36mPrograma terminado...\u001B[0m");
+                    System.out.println("\u001B[36mPrograma terminado...\u001B[0m");
                     break;
 
                 default:
                     System.out.println("\u001B[31mOpcion no validad, por favor intente de nuevo\u001B[0m");
-
             }
         } while (opcion != 6);
+        
         sc.close();
-    }
-
-    private static void inicializarRecursosDemo(SistemaEmergencia sistema) {
-        sistema.registrarRecurso(new Bomberos("Unidad-B1", 5, 100));
-        sistema.registrarRecurso(new Bomberos("Unidad-B2", 3, 80));
-        sistema.registrarRecurso(new Ambulancia("Unidad-A1", 2, 100));
-        sistema.registrarRecurso(new Ambulancia("Unidad-A2", 2, 60));
-        sistema.registrarRecurso(new Policia("Unidad-P1", 4, 100));
-        sistema.registrarRecurso(new Policia("Unidad-P2", 2, 70));
     }
 }

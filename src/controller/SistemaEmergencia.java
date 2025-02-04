@@ -16,6 +16,8 @@ import model.services.Bomberos;
 import model.services.Policia;
 import model.strategy.PrioridadGravedadStrategy;
 import model.strategy.PrioridadStrategy;
+import utils.TipoNivelGravedad;
+
 
 public class SistemaEmergencia implements SujetoEmergencias {
 
@@ -26,6 +28,7 @@ public class SistemaEmergencia implements SujetoEmergencias {
     private PrioridadStrategy prioridadStrategy;
     private int emergenciasAtendidas;
     private long tiempoTotalAtencion;
+    
 
     public SistemaEmergencia() {
         prioridadStrategy = new PrioridadGravedadStrategy();
@@ -91,37 +94,54 @@ public class SistemaEmergencia implements SujetoEmergencias {
     }
 
     public void asignarRecursosAEmergencia(Emergencia emergencia) {
-        // Buscamos recursos disponibles
         List<IRespuestaEmergencia> disponibles = filtrarRecursosDisponibles();
+        
         if (disponibles.isEmpty()) {
             System.out.println("No hay recursos disponibles para esta emergencia.");
             return;
         }
-        System.out.println("-> Asignando recursos automáticamente...");
-
-        if (emergencia instanceof Incendio) {
-            for (IRespuestaEmergencia r : disponibles) {
-                if (r instanceof Bomberos) {
-                    r.atenderEmergencia(emergencia);
-                    break;
-                }
-            }
-        } else if (emergencia instanceof AccidenteVehicular) {
-            for (IRespuestaEmergencia r : disponibles) {
-                if (r instanceof Ambulancia) {
-                    r.atenderEmergencia(emergencia);
-                    break;
-                }
-            }
-        } else if (emergencia instanceof Robo) {
-            for (IRespuestaEmergencia r : disponibles) {
-                if (r instanceof Policia) {
-                    r.atenderEmergencia(emergencia);
-                    break;
-                }
+        
+        System.out.println("-> Asignando recursos según el nivel de gravedad: " + emergencia.getNivelGravedad());
+    
+        // Prioridad según gravedad
+        int cantidadPolicias = 0, cantidadBomberos = 0, cantidadAmbulancias = 0;
+        TipoNivelGravedad gravedad = emergencia.getNivelGravedad();
+    
+        switch (gravedad) {
+            case GRAVE:
+                cantidadPolicias = 3;
+                cantidadBomberos = 3;
+                cantidadAmbulancias = 2;
+                break;
+            case CRITICA:
+                cantidadPolicias = 2;
+                cantidadBomberos = 2;
+                cantidadAmbulancias = 1;
+                break;
+            case MODERADA:
+                cantidadPolicias = 1;
+                cantidadBomberos = 1;
+                cantidadAmbulancias = 1;
+                break;
+           
+        }
+    
+        // Asignar recursos según tipo
+        asignarRecursosSegunTipo(disponibles, Policia.class, cantidadPolicias, emergencia);
+        asignarRecursosSegunTipo(disponibles, Bomberos.class, cantidadBomberos, emergencia);
+        asignarRecursosSegunTipo(disponibles, Ambulancia.class, cantidadAmbulancias, emergencia);
+    }
+    
+    private void asignarRecursosSegunTipo(List<IRespuestaEmergencia> disponibles, Class<?> tipoRecurso, int cantidad, Emergencia emergencia) {
+        for (IRespuestaEmergencia recurso : disponibles) {
+            if (tipoRecurso.isInstance(recurso)) {
+                recurso.atenderEmergencia(emergencia);
+                cantidad--;
+                if (cantidad == 0) break;
             }
         }
     }
+    
 
     public void atenderEmergencia(Emergencia e) {
         if (e.isAtendida()) {

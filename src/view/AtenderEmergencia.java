@@ -8,7 +8,7 @@ import model.Emergencia;
 
 public class AtenderEmergencia {
     
-public static void atenderEmergenciaMenu(SistemaEmergencia sistema, Scanner sc) {
+public  void atenderEmergenciaMenu(SistemaEmergencia sistema, Scanner sc) {
         List<Emergencia> pendientes = sistema.getEmergenciasPendientes();
         if (pendientes.isEmpty()) {
             System.out.println("No hay emergencias pendientes.");
