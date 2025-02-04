@@ -2,6 +2,9 @@ package view;
 
 import java.util.Scanner;
 
+import controller.SistemaEmergencia;
+import model.Emergencia;
+import model.factory.EmergenciaFactory;
 import utils.TipoEmergencia;
 import utils.TipoNivelGravedad;
 import utils.TipoUbicacion;
@@ -13,8 +16,11 @@ public class RegistrarEmergencia {
     private TipoNivelGravedad tipoNivelGravedad;
     private int tiempoRespuesta;
 
-    public void registrar() {
-        Scanner sc = new Scanner(System.in);
+    
+    
+
+    public void registrar(SistemaEmergencia sistema, Scanner sc) {
+    
 
         System.out.println("\n1. \u001B[32mIncendio\u001B[0m");
         System.out.println("2. \u001B[32mAccidente vehecular\u001B[0m");
@@ -77,7 +83,7 @@ public class RegistrarEmergencia {
                 tipoUbicacion = TipoUbicacion.OCCIDENTE;
                 break;
             default:
-                tipoUbicacion = TipoUbicacion.SUR;
+                System.out.println("\u001B[31mOpcion no validad, por favor intente de nuevo\u001B[0m");
                 break;
         }
 
@@ -108,8 +114,16 @@ public class RegistrarEmergencia {
         tiempoRespuesta = sc.nextInt();
         System.out.println("-------------------------------------");
 
-        sc.close();
+        Emergencia nueva = EmergenciaFactory.getEmergencia(tipoEmergencia, tipoUbicacion, tipoNivelGravedad, tiempoRespuesta);
+        if (nueva == null) {
+            System.out.println("Tipo de emergencia inválido.");
+            return;
+        }
+
+        sistema.registrarNuevaEmergencia(nueva);
+        System.out.println("Emergencia registrada: " + nueva);
     }
+
 
     public TipoEmergencia getTipoEmergencia() {
         return tipoEmergencia;

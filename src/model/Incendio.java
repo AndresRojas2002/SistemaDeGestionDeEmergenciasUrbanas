@@ -7,7 +7,7 @@ public class Incendio extends Emergencia {
 
     public Incendio( TipoUbicacion ubicacion, TipoNivelGravedad nivelGravedad, int tiempoRespuesta) {
         super(TipoEmergencia.INCENDIO, ubicacion, nivelGravedad, tiempoRespuesta);
-        //TODO Auto-generated constructor stub
+        
     }
 
     

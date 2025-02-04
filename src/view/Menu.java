@@ -2,13 +2,28 @@ package view;
 
 import java.util.Scanner;
 
+import controller.SistemaEmergencia;
+import model.services.Ambulancia;
+import model.services.Bomberos;
+import model.services.Policia;
+
 public class Menu {
 
     public void mostraMenu() {
+
+        SistemaEmergencia sistema = SistemaEmergencia.getInstancia();
+
+        inicializarRecursosDemo(sistema);
+       
         Scanner sc = new Scanner(System.in);
+        RegistrarEmergencia registrarEmergencia = new RegistrarEmergencia();
+        DatosEmergencia datosEmergencia = new DatosEmergencia(registrarEmergencia);
+        AtenderEmergencia atenderEmergencia = new AtenderEmergencia();
+         
+
         int opcion;
-        boolean salir = false;
-        while (!salir && sc.hasNextInt()) {
+
+        do {
 
             System.out.println("\n\u001B[36m" + "=====BIENVENIDOS AL SERVICIO DE EMERGENCIAS=====" + "\u001B[0m\n");
 
@@ -26,38 +41,46 @@ public class Menu {
 
             switch (opcion) {
                 case 1:
-                    RegistrarEmergencia registrarEmergencia = new RegistrarEmergencia();
-                    registrarEmergencia.registrar();
+
+                    registrarEmergencia.registrar(sistema, sc);
                     break;
 
                 case 2:
 
+                    datosEmergencia.mostrarDatosEmergencia();
+                    break;
+
                 case 3:
-                    System.out.println();
-                    // TODO atender emergencia
+                    sistema.mostrarEstadoRecursos();
                     break;
 
                 case 4:
-                    // TODO mostrar estadisticas
+                atenderEmergencia.atenderEmergenciaMenu(sistema, sc);
                     break;
 
-                case 5: // TODO mostrar estadisticas
+                case 5: 
+                sistema.mostrarEstadisticas();
                     break;
 
                 case 6:
-                    System.out.println("\u001B[36mPrograma terminado...\u001B[0m");
-                    salir = true;
+
+                System.out.println("\u001B[36mPrograma terminado...\u001B[0m");
                     break;
 
                 default:
                     System.out.println("\u001B[31mOpcion no validad, por favor intente de nuevo\u001B[0m");
 
             }
-
-        }
+        } while (opcion != 6);
         sc.close();
-
     }
 
+    private static void inicializarRecursosDemo(SistemaEmergencia sistema) {
+        sistema.registrarRecurso(new Bomberos("Unidad-B1", 5, 100));
+        sistema.registrarRecurso(new Bomberos("Unidad-B2", 3, 80));
+        sistema.registrarRecurso(new Ambulancia("Unidad-A1", 2, 100));
+        sistema.registrarRecurso(new Ambulancia("Unidad-A2", 2, 60));
+        sistema.registrarRecurso(new Policia("Unidad-P1", 4, 100));
+        sistema.registrarRecurso(new Policia("Unidad-P2", 2, 70));
+    }
 }
-

@@ -7,7 +7,7 @@ public class Robo extends Emergencia {
 
     public Robo( TipoUbicacion ubicacion, TipoNivelGravedad nivelGravedad, int tiempoRespuesta) {
         super(TipoEmergencia.ROBO, ubicacion, nivelGravedad, tiempoRespuesta);
-        //TODO Auto-generated constructor stub
+    
     }
 
    
