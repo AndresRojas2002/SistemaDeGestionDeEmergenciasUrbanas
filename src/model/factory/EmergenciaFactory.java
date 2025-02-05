@@ -25,7 +25,7 @@ public class EmergenciaFactory {
                 return new Robo(ubicacion, nivelGravedad, tiempoRespuesta);
 
             default:
-                throw new IllegalArgumentException("tipo de emergencia no valida");
+                throw new IllegalArgumentException("\u001B[31mTipo de emergencia no valida\u001B[0m");
         } 
 
     }

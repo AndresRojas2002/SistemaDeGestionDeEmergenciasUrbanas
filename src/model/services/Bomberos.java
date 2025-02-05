@@ -10,8 +10,8 @@ public class Bomberos extends ServicioBase {
 
     @Override
     public void atenderEmergencia(Emergencia emergencia) {
-        System.out.println("Bomberos en camino!!!");
-        System.out.println("-> [Bomberos" + getId() + "]: " + emergencia.toString());
+        System.out.println("\u001B[33mBomberos en camino!!!\u001B[0m\n");
+        System.out.println("->\u001B[32m [Bomberos" + getId() + " ]: \u001B[0m" + emergencia.toString());  
 
         asignarPersonal(5);
         gastarCombustible(11);
