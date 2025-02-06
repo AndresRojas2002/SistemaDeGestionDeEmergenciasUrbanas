@@ -116,12 +116,12 @@ public class RegistrarEmergencia {
 
         Emergencia nueva = EmergenciaFactory.getEmergencia(tipoEmergencia, tipoUbicacion, tipoNivelGravedad, tiempoRespuesta);
         if (nueva == null) {
-            System.out.println("Tipo de emergencia inválido.");
+            System.err.println("\u001B[31mTipo de emergencia inválido.\u001B[0m");
             return;
         }
 
         sistema.registrarNuevaEmergencia(nueva);
-        System.out.println("Emergencia registrada: " + nueva);
+        System.out.println("\u001B[32mEmergencia registrada: \u001B[0m" + nueva);
     }
 
 

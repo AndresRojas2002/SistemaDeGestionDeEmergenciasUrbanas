@@ -10,8 +10,8 @@ public class Ambulancia extends ServicioBase{
 
     @Override
     public void atenderEmergencia(Emergencia emergencia) {
-        System.out.println("Ambulancia en camino!!!");
-        System.out.println("-> [Ambulancia" + getId() + "]: " + emergencia.toString());        
+        System.out.println("\u001B[33m"+"Ambulancia en camino!!!"+"\u001B[0m\n");
+        System.out.println("->\u001B[32m [Ambulancia" + getId() + " ]: \u001B[0m" + emergencia.toString());         
         asignarPersonal(3);
         gastarCombustible(5);
     }

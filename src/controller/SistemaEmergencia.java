@@ -17,19 +17,26 @@ import model.services.Policia;
 import model.strategy.PrioridadGravedadStrategy;
 import model.strategy.PrioridadStrategy;
 
+
+
 public class SistemaEmergencia implements SujetoEmergencias {
 
     private static SistemaEmergencia instancia;
     private List<Emergencia> listaEmergencias;
     private List<IRespuestaEmergencia> listaRecursos;
     private List<EmergenciaObserver> observadores;
+
     private PrioridadStrategy prioridadStrategy;
+
     private int emergenciasAtendidas;
     private long tiempoTotalAtencion;
+   
+    
 
+    
     public SistemaEmergencia() {
         prioridadStrategy = new PrioridadGravedadStrategy();
-        listaEmergencias = new ArrayList<>();        
+        listaEmergencias = new ArrayList<>();
         listaRecursos = new ArrayList<>();
         observadores = new ArrayList<>();
         emergenciasAtendidas = 0;
@@ -44,30 +51,31 @@ public class SistemaEmergencia implements SujetoEmergencias {
         return instancia;
     }
 
-
-
     @Override
     public void agregarObserver(EmergenciaObserver observerEmergencias) {
-       observadores.add(observerEmergencias);
+        observadores.add(observerEmergencias);
     }
 
     @Override
     public void eliminarObserver(EmergenciaObserver observerEmergencias) {
-        observadores.remove(observerEmergencias); 
+        observadores.remove(observerEmergencias);
     }
 
     @Override
     public void notificarEmergencias(Emergencia emergencia) {
         for (EmergenciaObserver observer : observadores) {
             observer.onNuevaEmergencia(emergencia);
-        } 
+        }
     }
+
+    
 
     public void registrarRecurso(IRespuestaEmergencia recurso) {
         listaRecursos.add(recurso);
     }
+
     public void mostrarEstadoRecursos() {
-        System.out.println("\n--- ESTADO ACTUAL DE RECURSOS ---");
+        System.out.println("\u001B[34m\n=== ESTADO ACTUAL DE RECURSOS ===\u001B[0m");
         for (IRespuestaEmergencia r : listaRecursos) {
             System.out.println(r.toString());
         }
@@ -90,14 +98,16 @@ public class SistemaEmergencia implements SujetoEmergencias {
                 .collect(Collectors.toList());
     }
 
+
+
     public void asignarRecursosAEmergencia(Emergencia emergencia) {
         // Buscamos recursos disponibles
-        List<IRespuestaEmergencia> disponibles = filtrarRecursosDisponibles();
+        List<IRespuestaEmergencia> disponibles =filtrarRecursosDisponibles();
         if (disponibles.isEmpty()) {
-            System.out.println("No hay recursos disponibles para esta emergencia.");
+            System.err.println("\u001B[31mNo hay recursos disponibles para esta emergencia.\u001B[0m\n");
             return;
         }
-        System.out.println("-> Asignando recursos automáticamente...");
+        System.out.println("\n\u001B[32m-> Asignando recursos automáticamente...\u001B[0m\n");
 
         if (emergencia instanceof Incendio) {
             for (IRespuestaEmergencia r : disponibles) {
@@ -123,9 +133,10 @@ public class SistemaEmergencia implements SujetoEmergencias {
         }
     }
 
+
     public void atenderEmergencia(Emergencia e) {
         if (e.isAtendida()) {
-            System.out.println("Esta emergencia ya fue atendida.");
+            System.err.println("\u001B[31mEsta emergencia ya fue atendida.\u001B[0m");
             return;
         }
 
@@ -142,27 +153,27 @@ public class SistemaEmergencia implements SujetoEmergencias {
         }
 
         e.finalizarAtencion();
-        System.out.println("Emergencia atendida: " + e.getDescripcion());
+        System.out.println("\u001B[32mEmergencia atendida: \u001B[0m" + e.getDescripcion());
 
         emergenciasAtendidas++;
         tiempoTotalAtencion += e.getTiempoRespuesta();
     }
 
     public void mostrarEstadisticas() {
-        System.out.println("\n=== ESTADÍSTICAS DEL DÍA ===");
-        System.out.println("Emergencias atendidas: " + emergenciasAtendidas);
+        System.out.println("\u001B[34m\n=== ESTADÍSTICAS DEL DÍA ===\u001B[0m\n");
+        System.out.println("\u001B[32mEmergencias atendidas: \u001B[0m" + emergenciasAtendidas);
 
         long promedioMs = 0;
         if (emergenciasAtendidas > 0) {
             promedioMs = tiempoTotalAtencion / emergenciasAtendidas;
         }
         double promedioSeg = promedioMs / 1000.0;
-        System.out.println("Tiempo promedio de respuesta: " + promedioSeg + " seg.");
+        System.out.println("\u001B[32mTiempo promedio de respuesta: \u001B[0m" + promedioSeg + " seg.");
 
         long noAtendidas = listaEmergencias.stream()
                 .filter(e -> !e.isAtendida())
                 .count();
-        System.out.println("Emergencias no atendidas: " + noAtendidas);
+        System.out.println("\u001B[32mEmergencias no atendidas: \u001B[0m" + noAtendidas);
     }
 
     public void finalizarJornada() {
@@ -175,6 +186,5 @@ public class SistemaEmergencia implements SujetoEmergencias {
     public void setEstrategiaPrioridad(PrioridadStrategy nuevaEstrategia) {
         prioridadStrategy = nuevaEstrategia;
     }
-
 
 }

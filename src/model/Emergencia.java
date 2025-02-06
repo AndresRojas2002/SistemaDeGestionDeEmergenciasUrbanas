@@ -93,11 +93,11 @@ public abstract class Emergencia {
     }
 
     public String getDescripcion() {
-        return String.format("%s en %s (gravedad: %s)", tipo, ubicacion, nivelGravedad);
+        return String.format("\u001B[32m%s en %s (gravedad: %s)\u001B[0m", tipo, ubicacion, nivelGravedad);
     }
 
     public String toString() {
-        return getDescripcion() + " Tiempo estimado: " + tiempoRespuesta + " minutos";
+        return getDescripcion() + " \u001B[32mTiempo estimado: " + tiempoRespuesta + " minutos\u001B[0m\n";
     }
 
 }

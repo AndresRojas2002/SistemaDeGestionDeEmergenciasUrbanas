@@ -43,7 +43,7 @@ public abstract class ServicioBase implements IRespuestaEmergencia {
             personalDisponible -= cantidad;
 
         } else {
-            System.out.println("No hay suficiente personal disponible.");
+            System.out.println("\u001B[31mNo hay suficiente personal disponible.\u001B[0m");
         }
     }
 
@@ -67,10 +67,11 @@ public abstract class ServicioBase implements IRespuestaEmergencia {
 
     @Override
     public String toString() {
-        return "ServicioBase [id=" + id + ", personalDisponible=" + personalDisponible + ", combustible=" + combustible
-                + "]";
+        return "\n\u001B[32m"+"ServicioBase [\u001B[0m" + "\u001B[31m"+ "id = \u001B[0m" + id + ", "+"\u001B[31m" + "personalDisponible = \u001B[0m" + personalDisponible + ", "+ "\u001B[31m" + "combustible = \u001B[0m" + combustible
+                + "\u001B[32m"+"]\u001B[0m";
     }
 
       
 
 }
+
